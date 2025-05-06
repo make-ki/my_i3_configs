@@ -3,7 +3,18 @@
 #
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
-#
+
+#Checking if eww works
+#exec --no-startup-id eww open bar
+
+
+#Adding this to remove the ugly blue bar that comes with i3
+default_border none
+default_floating_border none 
+
+#Adding this so that for love of god i3 shows gaps (you need to install i3-gaps)
+gaps inner 5  
+gaps outer 5 
 
 # i3 config file (v4)
 #
@@ -35,7 +46,15 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 #Use polybar
-exec --no-startup-id polybar -c ~/.config/polybar/test_config.ini
+exec --no-startup-id polybar -c ~/.config/polybar/#test_config.ini
+
+#Open Picom
+exec --no-startup-id picom --experimental-backends
+
+#Open eww (close i3bar and polybar)
+#exec --no-startup-id eww daemon &
+#exec --no-startup-id eww open --dock batbar
+#exec --no-startup-id ~/bin/eww_clock.sh &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -189,18 +208,18 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # turn polybar off if you want to use i3-bar
-# bar {
-       # status_command i3status
-#}
+bar {
+       status_command i3status
+}
 #CHANGE BACKground here
 exec --no-startup-id systemctl stop bluetooth
-exec --no-startup-id feh --no-fehbg --bg-fill '/home/stark/Pictures/wallpaper_batman.png'
+exec --no-startup-id feh --no-fehbg --bg-fill '/home/stark/Pictures/batman_4k.jpg'
 #binding for stuff
 bindsym $mod+c exec dolphin
 bindsym $mod+o exec vesktop
 bindsym $mod+m exec flatpak run com.ktechpit.whatsie
 bindsym $mod+p exec firefox
-bindsym $mod+n exec /home/stark/Downloads/Obsidian-1.6.7.AppImage
+bindsym $mod+n exec obsidian
 # Increase brightness
 bindsym XF86BrightnessUp exec --no-startup-id sudo brightnessctl set +10%
 
